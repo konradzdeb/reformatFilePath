@@ -1,10 +1,12 @@
 Package: reformatFilePath
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
+Title: RStudio Add-In Formatting File Path
+Version: 0.0.0.1
 Authors@R: "Konrad Zdeb <konrad.zdeb@me.com> [aut,cre]"
-Description: What the package does (one paragraph).
+Description: This simple package formats file path string using 'file.path'
+  call. The add-in can optionally write the 'file.path' in 'normalizePath'
+  call and change default 'fsep' argument.
 Depends: R (>= 3.5.0)
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
