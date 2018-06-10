@@ -1,0 +1,4 @@
+Name: Format File Path
+Description: Format file path using 'file.path()'
+Binding: formatPathAddIn
+Interactive: true

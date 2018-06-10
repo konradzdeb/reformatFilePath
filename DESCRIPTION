@@ -1,0 +1,10 @@
+Package: reformatFilePath
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: "Konrad Zdeb <konrad.zdeb@me.com> [aut,cre]"
+Description: What the package does (one paragraph).
+Depends: R (>= 3.5.0)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
