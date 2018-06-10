@@ -22,3 +22,24 @@ loaded via a namespace (and not attached):
  [1] compiler_3.5.0  tools_3.5.0     whisker_0.3-2   withr_2.1.2    
  [5] rstudioapi_0.7  yaml_2.1.19     memoise_1.1.0   digest_0.6.15  
  [9] devtools_1.13.5 fortunes_1.5-4 
+----------------------------------------------
+Session Info for 2018-06-10 11:53:51
+R version 3.5.0 (2018-04-23)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS High Sierra 10.13.5
+
+Matrix products: default
+BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] reformatFilePath_0.0.0.1 colorout_1.2-0          
+
+loaded via a namespace (and not attached):
+[1] compiler_3.5.0 tools_3.5.0    rstudioapi_0.7 yaml_2.1.19    fortunes_1.5-4

@@ -17,10 +17,22 @@
 #' @export
 #'
 formatPathAddIn <- function() {
-    # Draws on: https://github.com/rstudio/addinexamples/blob/master/R/subsetAddin.R
     # Get the document context.
     context <- rstudioapi::getActiveDocumentContext()
     # Set the default data to use based on the selection.
     text <- context$selection[[1]]$text
     defaultData <- text
+
+    ui <- miniPage(
+        gadgetTitleBar("Reformat Code"),
+        miniContentPanel(
+            stableColumnLayout(
+                checkboxInput("brace.newline", "Place left braces '{' on a new line?", FALSE),
+                numericInput("indent", "Indent size: ", 2),
+                numericInput("width", "Column width: ", 60)
+            ),
+            uiOutput("document", container = rCodeContainer)
+        )
+    )
+
 }

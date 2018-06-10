@@ -5,4 +5,5 @@
 #'
 #' @docType package
 #' @name reformatFilePath
+#' @import shiny miniUI rstudioapi formatR
 NULL
