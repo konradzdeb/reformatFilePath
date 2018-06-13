@@ -24,15 +24,25 @@ formatPathAddIn <- function() {
     defaultData <- text
 
     ui <- miniPage(
-        gadgetTitleBar("Reformat Code"),
-        miniContentPanel(
-            stableColumnLayout(
-                checkboxInput("brace.newline", "Place left braces '{' on a new line?", FALSE),
-                numericInput("indent", "Indent size: ", 2),
-                numericInput("width", "Column width: ", 60)
-            ),
-            uiOutput("document", container = rCodeContainer)
-        )
-    )
+        gadgetTitleBar("Reformat File Path"),
+        miniContentPanel(h4("Construct file path")))
+
+    server <- function(input, output, session) {
+
+        # Get the document context.
+        context <- rstudioapi::getActiveDocumentContext()
+
+        # Reactive document with formatted path
+        reactiveDocument <- reactive({
+
+            formatted_path <- "abc"
+        })
+
+        output$fixed_path <- renderText()
+
+    }
+
+    viewer <- dialogViewer("Reformat File Path", width = 1000, height = 800)
+    runGadget(ui, server, viewer = viewer)
 
 }
