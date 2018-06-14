@@ -95,3 +95,27 @@ loaded via a namespace (and not attached):
 [17] formatR_1.5         later_0.7.3         promises_1.0.1      curl_3.2           
 [21] memoise_1.1.0       mime_0.5            compiler_3.5.0      addinexamples_0.1.0
 [25] jsonlite_1.5        httpuv_1.4.3       
+----------------------------------------------
+Session Info for 2018-06-13 21:51:36
+R version 3.5.0 (2018-04-23)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS High Sierra 10.13.5
+
+Matrix products: default
+BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] shiny_1.1.0              reformatFilePath_0.0.0.1 colorout_1.2-0          
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.17    digest_0.6.15   later_0.7.3     mime_0.5        R6_2.2.2       
+ [6] jsonlite_1.5    xtable_1.8-2    formatR_1.5     magrittr_1.5    rlang_0.2.1    
+[11] rstudioapi_0.7  miniUI_0.1.1.1  promises_1.0.1  fortunes_1.5-4  tools_3.5.0    
+[16] yaml_2.1.19     httpuv_1.4.3    compiler_3.5.0  htmltools_0.3.6
