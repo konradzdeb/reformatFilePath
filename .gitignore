@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+# Ignore session info files
+sessionInfoLog
