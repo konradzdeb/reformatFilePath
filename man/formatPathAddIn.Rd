@@ -10,8 +10,8 @@ formatPathAddIn()
 Formatted file path using \code{\link[base]{file.path}}.
 }
 \description{
-The add-in formats string file path into a call using \code{file.path}
-  function.
+The functions provides an add-in interface on the
+  \code{\link{create_file_path_call}} function.
 }
 \details{
 The add-in breaks the path string, example"

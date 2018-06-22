@@ -1,7 +1,7 @@
 #' @title Format File Path
 #'
-#' @description The add-in formats string file path into a call using \code{file.path}
-#'   function.
+#' @description The functions provides an add-in interface on the
+#'   \code{\link{create_file_path_call}} function.
 #'
 #' @details The add-in breaks the path string, example"
 #'   \code{"~/stuff/projects/r/something/else"} into \code{\link[base]{file.path}}
@@ -25,7 +25,9 @@ formatPathAddIn <- function() {
 
     ui <- miniPage(
         gadgetTitleBar("Reformat File Path"),
-        miniContentPanel(h4("Construct file path")))
+        miniContentPanel(h4("Construct file path"),
+                         uiOutput("fixed_path"))
+      )
 
     server <- function(input, output, session) {
 
@@ -35,10 +37,19 @@ formatPathAddIn <- function() {
         # Reactive document with formatted path
         reactiveDocument <- reactive({
 
-            formatted_path <- "abc"
+            formatted_path <- deparse(create_file_path_call(path_string = context$contents))
         })
 
-        output$fixed_path <- renderText()
+        output$fixed_path <- renderText(
+            reactiveDocument()
+        )
+
+        # Paste text on done
+        observeEvent(input$done, {
+            contents <- paste(reactiveDocument(), collapse = "\n")
+            rstudioapi::setDocumentContents(contents, id = context$id)
+            invisible(stopApp())
+        })
 
     }
 
