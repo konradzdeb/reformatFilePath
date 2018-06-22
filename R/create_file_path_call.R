@@ -31,7 +31,7 @@ create_file_path_call <-
 
         # Construct basic file path call
         call_file_path <- call("file.path")
-        if (R.utils::isAbsolutePath(path_string)) {
+        if (R.utils::isAbsolutePath(path_string[1])) {
             split_pth <- append(x = split_pth,
                                 values = "/",
                                 after = 0)
@@ -41,6 +41,10 @@ create_file_path_call <-
         # If need to normalize wrap in normalize call
         if (normalize) {
             call_file_path <- call("normalizePath", call_file_path)
+        }
+
+        if (mustWork) {
+
         }
 
         return(call_file_path)

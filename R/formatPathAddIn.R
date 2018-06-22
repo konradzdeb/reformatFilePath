@@ -25,24 +25,43 @@ formatPathAddIn <- function() {
 
     ui <- miniPage(
         gadgetTitleBar("Reformat File Path"),
-        miniContentPanel(h4("Construct file path"),
-                         uiOutput("fixed_path"))
-      )
+        miniContentPanel(
+            h4("New path"),
+            uiOutput("fixed_path"),
+            checkboxInput(
+                inputId = "normalize",
+                label = "Normalize",
+                value = FALSE
+            ),
+            conditionalPanel(
+                condition = "input.normalize == 1",
+                checkboxInput(
+                    inputId = "must_work",
+                    label = "Must work",
+                    value = FALSE
+                )
+            )
+
+        )
+    )
 
     server <- function(input, output, session) {
-
         # Get the document context.
         context <- rstudioapi::getActiveDocumentContext()
 
         # Reactive document with formatted path
         reactiveDocument <- reactive({
-
-            formatted_path <- deparse(create_file_path_call(path_string = context$contents))
+            formatted_path <-
+                deparse(
+                    create_file_path_call(
+                        path_string = context$contents,
+                        mustWork = input$must_work,
+                        normalize = input$normalize
+                    )
+                )
         })
 
-        output$fixed_path <- renderText(
-            reactiveDocument()
-        )
+        output$fixed_path <- renderText(reactiveDocument())
 
         # Paste text on done
         observeEvent(input$done, {
@@ -53,7 +72,8 @@ formatPathAddIn <- function() {
 
     }
 
-    viewer <- dialogViewer("Reformat File Path", width = 1000, height = 800)
+    viewer <-
+        dialogViewer("Reformat File Path", width = 1000, height = 800)
     runGadget(ui, server, viewer = viewer)
 
 }
