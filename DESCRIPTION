@@ -5,7 +5,7 @@ Authors@R: "Konrad Zdeb <konrad.zdeb@me.com> [aut,cre]"
 Description: This simple package formats file path string using 'file.path'
   call. The add-in can optionally write the 'file.path' in 'normalizePath'
   call and change default 'fsep' argument.
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.3.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
