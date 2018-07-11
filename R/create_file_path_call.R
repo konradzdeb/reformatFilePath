@@ -44,7 +44,8 @@ create_file_path_call <-
         }
 
         if (mustWork) {
-
+            call_file_path <-
+                call("normalizePath", call_file_path, mustWork = TRUE)
         }
 
         return(call_file_path)
