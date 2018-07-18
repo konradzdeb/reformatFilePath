@@ -48,13 +48,16 @@ formatPathAddIn <- function() {
     server <- function(input, output, session) {
         # Get the document context.
         context <- rstudioapi::getActiveDocumentContext()
+        selected_text <- context[["selection"]][[1]][["text"]]
+        selected_range <- context[["selection"]][[1]][["range"]]
 
         # Reactive document with formatted path
         reactiveDocument <- reactive({
+
             formatted_path <-
                 deparse(
                     create_file_path_call(
-                        path_string = context$contents,
+                        path_string = selected_text,
                         mustWork = input$must_work,
                         normalize = input$normalize
                     )
@@ -65,15 +68,17 @@ formatPathAddIn <- function() {
 
         # Paste text on done
         observeEvent(input$done, {
-            contents <- paste(reactiveDocument(), collapse = "\n")
-            rstudioapi::setDocumentContents(contents, id = context$id)
+            # TODO: paste text withot escaping ""
+            fixed_contents <- paste(reactiveDocument(), collapse = "\n")
+            rstudioapi::modifyRange(location = selected_range, text = fixed_contents)
             invisible(stopApp())
         })
 
     }
 
-    viewer <-
-        dialogViewer("Reformat File Path", width = 1000, height = 800)
+    viewer <- dialogViewer("Reformat File Path",
+                           width = 1000, height = 800)
+    # TODO: avoid user cancel error
     runGadget(ui, server, viewer = viewer)
 
 }
