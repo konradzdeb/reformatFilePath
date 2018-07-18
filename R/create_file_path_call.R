@@ -31,7 +31,7 @@ create_file_path_call <-
 
         # Construct basic file path call
         call_file_path <- call("file.path")
-        if (R.utils::isAbsolutePath(path_string)) {
+        if (R.utils::isAbsolutePath(path_string[1])) {
             split_pth <- append(x = split_pth,
                                 values = "/",
                                 after = 0)

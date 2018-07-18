@@ -77,7 +77,7 @@ formatPathAddIn <- function() {
     }
 
     viewer <- dialogViewer("Reformat File Path",
-                           width = 1000, height = 800)
+                           width = 600, height = 200)
     # TODO: avoid user cancel error
     runGadget(ui, server, viewer = viewer)
 
