@@ -24,7 +24,10 @@ formatPathAddIn <- function() {
     defaultData <- text
 
     ui <- miniPage(
-        gadgetTitleBar("Reformat File Path"),
+        gadgetTitleBar(title = "Reformat File Path",
+                       right = miniTitleBarButton(inputId = "done",
+                                                  label = "Paste",
+                                                  primary = TRUE)),
         miniContentPanel(
             h4("New path"),
             # TODO: Format content better
@@ -70,7 +73,6 @@ formatPathAddIn <- function() {
 
         # Paste text on done
         observeEvent(input$done, {
-            # TODO: paste text withot escaping ""
             fixed_contents <-
                 paste(reactiveDocument(), collapse = "\n")
             rstudioapi::modifyRange(location = selected_range, text = fixed_contents)
@@ -81,7 +83,6 @@ formatPathAddIn <- function() {
 
     viewer <- dialogViewer("Reformat File Path",
                            width = 600, height = 200)
-    # TODO: avoid user cancel error
     runGadget(ui, server, viewer = viewer)
 
 }
