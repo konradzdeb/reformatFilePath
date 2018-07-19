@@ -27,6 +27,7 @@ formatPathAddIn <- function() {
         gadgetTitleBar("Reformat File Path"),
         miniContentPanel(
             h4("New path"),
+            # TODO: Format content better
             uiOutput("fixed_path"),
             checkboxInput(
                 inputId = "normalize",
@@ -48,12 +49,13 @@ formatPathAddIn <- function() {
     server <- function(input, output, session) {
         # Get the document context.
         context <- rstudioapi::getActiveDocumentContext()
-        selected_text <- context[["selection"]][[1]][["text"]]
+        selected_text <- gsub(pattern = '"',
+                              replacement = '',
+                              x = context[["selection"]][[1]][["text"]])
         selected_range <- context[["selection"]][[1]][["range"]]
 
         # Reactive document with formatted path
         reactiveDocument <- reactive({
-
             formatted_path <-
                 deparse(
                     create_file_path_call(
@@ -69,7 +71,8 @@ formatPathAddIn <- function() {
         # Paste text on done
         observeEvent(input$done, {
             # TODO: paste text withot escaping ""
-            fixed_contents <- paste(reactiveDocument(), collapse = "\n")
+            fixed_contents <-
+                paste(reactiveDocument(), collapse = "\n")
             rstudioapi::modifyRange(location = selected_range, text = fixed_contents)
             invisible(stopApp())
         })
