@@ -24,10 +24,14 @@ formatPathAddIn <- function() {
     defaultData <- text
 
     ui <- miniPage(
-        gadgetTitleBar(title = "Reformat File Path",
-                       right = miniTitleBarButton(inputId = "done",
-                                                  label = "Paste",
-                                                  primary = TRUE)),
+        gadgetTitleBar(
+            title = "Reformat File Path",
+            right = miniTitleBarButton(
+                inputId = "done",
+                label = "Paste",
+                primary = TRUE
+            )
+        ),
         miniContentPanel(
             h4("New path"),
             # TODO: Format content better
@@ -69,7 +73,10 @@ formatPathAddIn <- function() {
                 )
         })
 
-        output$fixed_path <- renderText(reactiveDocument())
+        output$fixed_path <- renderUI(tagList(
+            tags$script(src = "prism.js"),
+            HTML(reactiveDocument())
+        ))
 
         # Paste text on done
         observeEvent(input$done, {
