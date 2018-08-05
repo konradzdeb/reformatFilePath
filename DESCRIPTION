@@ -12,4 +12,7 @@ LazyData: true
 RoxygenNote: 6.1.0
 Suggests: 
     testthat,
-    checkmate
+    checkmate,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

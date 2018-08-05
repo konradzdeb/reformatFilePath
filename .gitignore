@@ -4,3 +4,4 @@
 .Ruserdata
 # Ignore session info files
 sessionInfoLog
+inst/doc
