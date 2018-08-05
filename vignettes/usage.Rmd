@@ -1,10 +1,10 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Format File Path: Sample Usage"
+author: "Konrad Zdeb"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{File Path Format: Sample Usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,4 +16,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-The vignette demonstrates addin usage.
+The vignette demonstrates usage of the add-in.
+
+<img src="sample_usage.gif" alt="Sample usage" width="100%">
