@@ -35,7 +35,7 @@ formatPathAddIn <- function() {
         miniContentPanel(
             h4("New path"),
             # TODO: Format content better
-            uiOutput("fixed_path"),
+            verbatimTextOutput("fixed_path"),
             checkboxInput(
                 inputId = "normalize",
                 label = "Normalize",
@@ -73,10 +73,7 @@ formatPathAddIn <- function() {
                 )
         })
 
-        output$fixed_path <- renderUI(tagList(
-            tags$script(src = "prism.js"),
-            HTML(reactiveDocument())
-        ))
+        output$fixed_path <- renderText(reactiveDocument())
 
         # Paste text on done
         observeEvent(input$done, {
