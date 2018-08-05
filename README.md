@@ -4,7 +4,7 @@ The `reformatFilePath` RStudio Addin provides convenient mechanism replacing pat
 
 ## Installation
 
-The package can be installed from GitHub using [`devtools`](https://devtools.r-lib.org) or [`remotes`](https://github.com/r-lib/remotes) package. Example installation using [`devtools`](https://devtools.r-lib.org):
+The package can be installed from GitHub using [`devtools`](https://devtools.r-lib.org) or [`remotes`](https://github.com/r-lib/remotes) package. Installation using [`devtools`](https://devtools.r-lib.org):
 
 ``` r 
 if (!require("devtools")) {
