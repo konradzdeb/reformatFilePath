@@ -17,9 +17,5 @@ if (!require("devtools")) {
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-## basic example code
-```
+<img src="vignettes/sample_usage.gif" width="100%">
 
