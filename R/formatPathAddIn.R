@@ -34,7 +34,6 @@ formatPathAddIn <- function() {
         ),
         miniContentPanel(
             h4("New path"),
-            # TODO: Format content better
             verbatimTextOutput("fixed_path"),
             checkboxInput(
                 inputId = "normalize",
