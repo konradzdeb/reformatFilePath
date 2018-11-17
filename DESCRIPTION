@@ -19,5 +19,6 @@ Suggests:
     testthat,
     checkmate,
     knitr,
-    rmarkdown
+    rmarkdown,
+    here
 VignetteBuilder: knitr

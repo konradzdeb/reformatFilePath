@@ -19,9 +19,6 @@
 formatPathAddIn <- function() {
     # Get the document context.
     context <- rstudioapi::getActiveDocumentContext()
-    # Set the default data to use based on the selection.
-    text <- context$selection[[1]]$text
-    defaultData <- text
 
     ui <- miniPage(
         gadgetTitleBar(
@@ -36,6 +33,11 @@ formatPathAddIn <- function() {
             h4("New path"),
             verbatimTextOutput("fixed_path"),
             checkboxInput(
+                inputId = "here",
+                label = "use here",
+                value = FALSE
+            ),
+            checkboxInput(
                 inputId = "normalize",
                 label = "Normalize",
                 value = FALSE
@@ -48,7 +50,6 @@ formatPathAddIn <- function() {
                     value = FALSE
                 )
             )
-
         )
     )
 
@@ -60,6 +61,14 @@ formatPathAddIn <- function() {
                               x = context[["selection"]][[1]][["text"]])
         selected_range <- context[["selection"]][[1]][["range"]]
 
+        observe({
+            if (!requireNamespace("here", quietly = TRUE) && input$here) {
+                rstudioapi::showDialog("Error",
+                                       "here is not installed",
+                                       "https://github.com/r-lib/here")
+                shiny::updateCheckboxInput(session, inputId = "here", value = FALSE)
+            }
+        })
         # Reactive document with formatted path
         reactiveDocument <- reactive({
             formatted_path <-
@@ -67,7 +76,8 @@ formatPathAddIn <- function() {
                     create_file_path_call(
                         path_string = selected_text,
                         mustWork = input$must_work,
-                        normalize = input$normalize
+                        normalize = input$normalize,
+                        here = input$here
                     )
                 )
         })
