@@ -1,5 +1,7 @@
 # reformatFilePath
 
+[![Travis build status](https://travis-ci.org/konradedgar/reformatFilePath.svg?branch=master)](https://travis-ci.org/konradedgar/reformatFilePath)
+
 The `reformatFilePath` RStudio Addin provides convenient mechanism replacing path string with a `file.path` call. 
 
 ## Installation
