@@ -1,4 +1,4 @@
-#' @title Format File Path
+#' @title Ffile.path("/")ormat File Path
 #'
 #' @description The functions provides an add-in interface on the
 #'   \code{\link{create_file_path_call}} function.
@@ -17,8 +17,6 @@
 #' @export
 #'
 formatPathAddIn <- function() {
-    # Get the document context.
-    context <- rstudioapi::getActiveDocumentContext()
 
     ui <- miniPage(
         gadgetTitleBar(
@@ -59,6 +57,12 @@ formatPathAddIn <- function() {
         selected_text <- gsub(pattern = '"',
                               replacement = '',
                               x = context[["selection"]][[1]][["text"]])
+        # if nothing is selected, warns the user and exit
+        if (!nzchar(selected_text)) {
+            rstudioapi::showDialog("Error",
+                                   "text selection is empty")
+            invisible(stopApp())
+        }
         selected_range <- context[["selection"]][[1]][["range"]]
 
         observe({
