@@ -8,6 +8,7 @@
 #'
 #' @param path_string Path string.
 #' @param path_sep Path separator, defults to \code{.Platform$file.sep}.
+#' @param here A logical, defaults to \code{FALSE} whether to use the function here
 #' @param normalize A logical, defaults to \code{TRUE} whether to wrap in
 #'   \code{\link[base]{normalizePath}}.
 #' @param mustWork As per \code{mustWork} in \code{\link[base]{normalizePath}}
@@ -22,6 +23,7 @@
 create_file_path_call <-
     function(path_string,
              path_sep = .Platform$file.sep,
+             here     = FALSE,
              mustWork = TRUE,
              normalize = TRUE) {
         # Break path and keep non-missing elements
@@ -30,7 +32,11 @@ create_file_path_call <-
         split_pth <- split_pth[split_pth != ""]
 
         # Construct basic file path call
-        call_file_path <- call("file.path")
+        if (here && !! requireNamespace("here", quietly = TRUE)) {
+           call_file_path <- call("here")
+        } else {
+            call_file_path <- call("file.path")
+        }
         if (!grepl("~", path_string)) {
             split_pth <- append(x = split_pth,
                                 values = "/",

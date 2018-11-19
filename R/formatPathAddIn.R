@@ -1,4 +1,4 @@
-#' @title Format File Path
+#' @title Ffile.path("/")ormat File Path
 #'
 #' @description The functions provides an add-in interface on the
 #'   \code{\link{create_file_path_call}} function.
@@ -17,11 +17,6 @@
 #' @export
 #'
 formatPathAddIn <- function() {
-    # Get the document context.
-    context <- rstudioapi::getActiveDocumentContext()
-    # Set the default data to use based on the selection.
-    text <- context$selection[[1]]$text
-    defaultData <- text
 
     ui <- miniPage(
         gadgetTitleBar(
@@ -36,6 +31,11 @@ formatPathAddIn <- function() {
             h4("New path"),
             verbatimTextOutput("fixed_path"),
             checkboxInput(
+                inputId = "here",
+                label = "use here",
+                value = FALSE
+            ),
+            checkboxInput(
                 inputId = "normalize",
                 label = "Normalize",
                 value = FALSE
@@ -48,7 +48,6 @@ formatPathAddIn <- function() {
                     value = FALSE
                 )
             )
-
         )
     )
 
@@ -58,8 +57,22 @@ formatPathAddIn <- function() {
         selected_text <- gsub(pattern = '"',
                               replacement = '',
                               x = context[["selection"]][[1]][["text"]])
+        # if nothing is selected, warns the user and exit
+        if (!nzchar(selected_text)) {
+            rstudioapi::showDialog("Error",
+                                   "text selection is empty")
+            invisible(stopApp())
+        }
         selected_range <- context[["selection"]][[1]][["range"]]
 
+        observe({
+            if (!requireNamespace("here", quietly = TRUE) && input$here) {
+                rstudioapi::showDialog("Error",
+                                       "here is not installed",
+                                       "https://github.com/r-lib/here")
+                shiny::updateCheckboxInput(session, inputId = "here", value = FALSE)
+            }
+        })
         # Reactive document with formatted path
         reactiveDocument <- reactive({
             formatted_path <-
@@ -67,7 +80,8 @@ formatPathAddIn <- function() {
                     create_file_path_call(
                         path_string = selected_text,
                         mustWork = input$must_work,
-                        normalize = input$normalize
+                        normalize = input$normalize,
+                        here = input$here
                     )
                 )
         })
