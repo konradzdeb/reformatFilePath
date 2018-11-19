@@ -2,7 +2,7 @@
 % Please edit documentation in R/formatPathAddIn.R
 \name{formatPathAddIn}
 \alias{formatPathAddIn}
-\title{Format File Path}
+\title{Ffile.path("/")ormat File Path}
 \usage{
 formatPathAddIn()
 }

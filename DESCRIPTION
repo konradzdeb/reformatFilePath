@@ -1,7 +1,9 @@
 Package: reformatFilePath
 Title: RStudio Add-In Formatting File Path
 Version: 0.0.0.1
-Authors@R: "Konrad Zdeb <konrad.zdeb@me.com> [aut,cre]"
+Authors@R: c(person("Konrad", "Zdeb", email = "konrad.zdeb@me.com", role = c("aut", "cre")),
+    person("Aur\u00E9lien", "Ginolhac", role = "aut")
+    )
 Description: This simple package formats file path string using 'file.path'
   call. The add-in can optionally write the 'file.path' in 'normalizePath'
   call and change default 'fsep' argument.
