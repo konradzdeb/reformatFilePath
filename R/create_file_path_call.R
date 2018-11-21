@@ -37,6 +37,12 @@ create_file_path_call <-
         } else {
             call_file_path <- call("file.path")
         }
+        # given absolute paths should stay absolute for unix
+        if (grepl("^/", path_string) && .Platform$OS.type != "windows") {
+            split_pth <- append(x = split_pth,
+                                values = path_sep,
+                                after = 0)
+        }
         call_file_path[2:(length(split_pth) + 1)] <- split_pth
 
         # If need to normalize wrap in normalize call
@@ -49,3 +55,4 @@ create_file_path_call <-
 
         return(call_file_path)
     }
+
