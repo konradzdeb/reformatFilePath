@@ -16,14 +16,14 @@ test_that("returned strings", {
     sep <- .Platform$file.sep
     path <- paste0("test", sep, "this")
     expect_equal(deparse(create_file_path_call(path)),
-                 "normalizePath(file.path(\"/\", \"test\", \"this\"), mustWork = TRUE)")
+                 "normalizePath(file.path(\"test\", \"this\"), mustWork = TRUE)")
     expect_equal(deparse(create_file_path_call(path, normalize = FALSE)),
-                 "file.path(\"/\", \"test\", \"this\")")
+                 "file.path(\"test\", \"this\")")
     expect_equal(deparse(create_file_path_call(path, mustWork = FALSE)),
-                 "normalizePath(file.path(\"/\", \"test\", \"this\"))")
+                 "normalizePath(file.path(\"test\", \"this\"))")
     if (requireNamespace("here", quietly = TRUE)) {
         expect_equal(deparse(create_file_path_call(path, here = TRUE, normalize = FALSE)),
-                     "here(\"/\", \"test\", \"this\")")
+                     "here(\"test\", \"this\")")
     }
 })
 
