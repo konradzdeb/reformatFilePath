@@ -37,11 +37,6 @@ create_file_path_call <-
         } else {
             call_file_path <- call("file.path")
         }
-        if (!grepl("~", path_string)) {
-            split_pth <- append(x = split_pth,
-                                values = "/",
-                                after = 0)
-        }
         call_file_path[2:(length(split_pth) + 1)] <- split_pth
 
         # If need to normalize wrap in normalize call
