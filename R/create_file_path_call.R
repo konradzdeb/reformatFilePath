@@ -23,6 +23,7 @@
 create_file_path_call <-
     function(path_string,
              path_sep = .Platform$file.sep,
+             path_expand = FALSE,
              here     = FALSE,
              mustWork = TRUE,
              normalize = TRUE) {
@@ -32,18 +33,38 @@ create_file_path_call <-
         split_pth <- split_pth[split_pth != ""]
 
         # Construct basic file path call
-        if (here && !! requireNamespace("here", quietly = TRUE)) {
-           call_file_path <- call("here")
+        if (here && !!requireNamespace("here", quietly = TRUE)) {
+            call_file_path <- call("here")
         } else {
             call_file_path <- call("file.path")
         }
         # given absolute paths should stay absolute for unix
-        if (grepl("^/", path_string) && .Platform$OS.type != "windows") {
+        if (grepl("^/", path_string) &&
+            .Platform$OS.type != "windows") {
             split_pth <- append(x = split_pth,
                                 values = path_sep,
                                 after = 0)
         }
         call_file_path[2:(length(split_pth) + 1)] <- split_pth
+
+        # If required surround '~' with path expand
+        if (is.null(path_expand)) {
+            return()
+        } else {
+            if (path_expand) {
+                call_file_path <- lapply(
+                    X = call_file_path,
+                    FUN = function(x) {
+                        if (as.character(x) == "~") {
+                            call("path.expand", "~")
+                        } else {
+                            x
+                        }
+                    }
+                )
+            }
+            call_file_path <- as.call(call_file_path)
+        }
 
         # If need to normalize wrap in normalize call
         if (all(normalize, mustWork)) {
@@ -53,6 +74,8 @@ create_file_path_call <-
             call_file_path <- call("normalizePath", call_file_path)
         }
 
+
+
+
         return(call_file_path)
     }
-

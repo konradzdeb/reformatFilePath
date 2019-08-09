@@ -17,7 +17,6 @@
 #' @export
 #'
 formatPathAddIn <- function() {
-
     ui <- miniPage(
         gadgetTitleBar(
             title = "Reformat File Path",
@@ -30,22 +29,25 @@ formatPathAddIn <- function() {
         miniContentPanel(
             h4("New path"),
             verbatimTextOutput("fixed_path"),
-            checkboxInput(
-                inputId = "here",
-                label = "use here",
-                value = FALSE
-            ),
-            checkboxInput(
-                inputId = "normalize",
-                label = "Normalize",
-                value = FALSE
-            ),
-            conditionalPanel(
-                condition = "input.normalize == 1",
+            fillRow(
                 checkboxInput(
-                    inputId = "must_work",
-                    label = "Must work",
+                    inputId = "here",
+                    label = "Use here",
                     value = FALSE
+                ),
+                uiOutput("expand_path"),
+                checkboxInput(
+                    inputId = "normalize",
+                    label = "Normalize",
+                    value = FALSE
+                ),
+                conditionalPanel(
+                    condition = "input.normalize == 1",
+                    checkboxInput(
+                        inputId = "must_work",
+                        label = "Must work",
+                        value = FALSE
+                    )
                 )
             )
         )
@@ -70,9 +72,25 @@ formatPathAddIn <- function() {
                 rstudioapi::showDialog("Error",
                                        "here is not installed",
                                        "https://github.com/r-lib/here")
-                shiny::updateCheckboxInput(session, inputId = "here", value = FALSE)
+                shiny::updateCheckboxInput(session,
+                                           inputId = "here",
+                                           value = FALSE)
             }
         })
+
+        # Conditionally create option to expand '~' in the path
+        output$expand_path <- renderUI({
+            if (any(grepl(
+                pattern = "~",
+                x = selected_text,
+                fixed = TRUE
+            ))) {
+                checkboxInput(inputId = "chckbx_expand_path",
+                              label = "Expand path",
+                              value = FALSE)
+            }
+        })
+
         # Reactive document with formatted path
         reactiveDocument <- reactive({
             formatted_path <-
@@ -81,7 +99,8 @@ formatPathAddIn <- function() {
                         path_string = selected_text,
                         mustWork = input$must_work,
                         normalize = input$normalize,
-                        here = input$here
+                        here = input$here,
+                        path_expand = input$chckbx_expand_path
                     )
                 )
         })
