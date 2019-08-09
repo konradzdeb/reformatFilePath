@@ -1,6 +1,6 @@
 # reformatFilePath
 
-[![Travis build status](https://travis-ci.org/konradzdeb/reformatFilePath.svg?branch=master)](https://travis-ci.org/konradzdeb/reformatFilePath)   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/konradedgar/reformatFilePath?branch=master&svg=true)](https://ci.appveyor.com/project/konradedgar/reformatFilePath) [![codecov](https://codecov.io/gh/konradedgar/reformatFilePath/branch/master/graph/badge.svg)](https://codecov.io/gh/konradedgar/reformatFilePath)
+[![Travis build status](https://travis-ci.org/konradzdeb/reformatFilePath.svg?branch=master)](https://travis-ci.org/konradzdeb/reformatFilePath)   [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/konradzdeb/reformatFilePath?branch=master&svg=true)](https://ci.appveyor.com/project/konradzdeb/reformatFilePath) [![codecov](https://codecov.io/gh/konradzdeb/reformatFilePath/branch/master/graph/badge.svg)](https://codecov.io/gh/konradzdeb/reformatFilePath)
 
 The `reformatFilePath` RStudio Addin provides convenient mechanism replacing path string with a `file.path` call. 
 
