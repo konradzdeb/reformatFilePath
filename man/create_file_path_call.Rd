@@ -5,12 +5,15 @@
 \title{Create File Path Call}
 \usage{
 create_file_path_call(path_string, path_sep = .Platform$file.sep,
-  here = FALSE, mustWork = TRUE, normalize = TRUE)
+  path_expand = FALSE, here = FALSE, mustWork = TRUE,
+  normalize = TRUE)
 }
 \arguments{
 \item{path_string}{Path string.}
 
 \item{path_sep}{Path separator, defults to \code{.Platform$file.sep}.}
+
+\item{path_expand}{Whether to replace \code{~} with \code{path.expand("~")}.}
 
 \item{here}{A logical, defaults to \code{FALSE} whether to use the function here}
 
