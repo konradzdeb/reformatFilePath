@@ -12,6 +12,7 @@
 #' @param normalize A logical, defaults to \code{TRUE} whether to wrap in
 #'   \code{\link[base]{normalizePath}}.
 #' @param mustWork As per \code{mustWork} in \code{\link[base]{normalizePath}}
+#' @param path_expand Whether to replace \code{~} with \code{path.expand("~")}.
 #'
 #' @return A \code{\link[base]{file.path}} call.
 #'
