@@ -18,6 +18,7 @@
 #'
 formatPathAddIn <- function() {
     ui <- miniPage(
+        includeHighlightJs(),
         gadgetTitleBar(
             title = "Reformat File Path",
             right = miniTitleBarButton(
@@ -28,7 +29,8 @@ formatPathAddIn <- function() {
         ),
         miniContentPanel(
             h4("New path"),
-            verbatimTextOutput("fixed_path"),
+            # verbatimTextOutput("fixed_path"),
+            uiOutput("fixed_path", container = rCodeContainer),
             fillRow(
                 checkboxInput(
                     inputId = "here",
@@ -105,7 +107,12 @@ formatPathAddIn <- function() {
                 )
         })
 
-        output$fixed_path <- renderText(reactiveDocument())
+        # output$fixed_path <- renderText(reactiveDocument())
+        output$fixed_path <- renderCode({
+            fixed_path <- reactiveDocument()
+            highlightCode(session, "fixed_path")
+            fixed_path
+        })
 
         # Paste text on done
         observeEvent(input$done, {
