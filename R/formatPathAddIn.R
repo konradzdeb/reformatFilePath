@@ -12,7 +12,8 @@
 #' @references The add-in draws heavily on the code available in
 #'   \url{https://github.com/rstudio/addinexamples}.
 #'
-#' @return Formatted file path using \code{\link[base]{file.path}}.
+#' @return Formatted file path using \code{\link[base]{file.path}} or
+#'   \code{\link[here]{here}}.
 #'
 #' @export
 #'

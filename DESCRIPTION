@@ -1,6 +1,6 @@
 Package: reformatFilePath
 Title: RStudio Add-In Formatting File Path
-Version: 0.0.0.2
+Version: 1.0.0
 Authors@R: c(person("Konrad", "Zdeb", email = "konrad.zdeb@me.com", role = c("aut", "cre")),
     person("Aur\u00E9lien", "Ginolhac", role = "aut")
     )
@@ -13,10 +13,10 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Imports:
-    shiny (>= 0.13),
-    formatR,
-    miniUI (>= 0.1.1),
-    rstudioapi (>= 0.5),
+    shiny       (>= 0.13),
+    formatR     (>= 1.7),
+    miniUI      (>= 0.1.1),
+    rstudioapi  (>= 0.5),
 Suggests: 
     testthat,
     checkmate,

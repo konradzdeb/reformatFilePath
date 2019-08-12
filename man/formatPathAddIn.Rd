@@ -7,7 +7,8 @@
 formatPathAddIn()
 }
 \value{
-Formatted file path using \code{\link[base]{file.path}}.
+Formatted file path using \code{\link[base]{file.path}} or
+  \code{\link[here]{here}}.
 }
 \description{
 The functions provides an add-in interface on the
